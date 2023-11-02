@@ -7,17 +7,17 @@ dotenv.config()
 const app = express()
 const port = 3000
 
+app.set('json spaces', 2)
+
 const auth = (req,res,next) => {
   if(req.query.key == process.env.KEY) {
     next()
   } else {
-    res.json({"status": "Not allowed","message": "Valid key needed"})
+    res.json({"status": "Dilarang","message": "Membutuhkan key yang valid untuk diakses"})
   }
 }
 
-app.use(auth)
-
-app.get("/api/id/:id", (req, res) => {
+app.get("/id/:id", auth, (req, res) => {
   req.params.id == undefined && res.send("Tolong masukkan id setelah api/id/")
   if(req.params.id && jokes[req.params.id - 1]) {
     res.json(jokes[req.params.id - 1])
@@ -26,8 +26,12 @@ app.get("/api/id/:id", (req, res) => {
   }
 })
 
-app.get("/api/random", (req,res) => {
+app.get("/random", auth, (req,res) => {
   res.json(jokes[Math.floor(Math.random() * jokes.length)])
+})
+
+app.get("*", (req,res) => {
+  res.send("Endpoint tidak ditemukan")
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
