@@ -31,3 +31,5 @@ app.get("/api/random", (req,res) => {
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
+
+export default app

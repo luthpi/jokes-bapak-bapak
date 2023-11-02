@@ -14,4 +14,5 @@ export const jokes =
     "id": 3,
     "permulaan": "Hewan apa yang sering telat ke sekolah?",
     "puncak": "Kaki seribu, soalnya pake sepatunya lama"
+  },
 ]
