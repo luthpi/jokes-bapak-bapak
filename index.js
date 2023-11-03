@@ -29,7 +29,7 @@ app.get("/id/:id", auth, (req, res) => {
 });
 
 app.get("/random", auth, (req, res) => {
-  vxres.json(jokes[Math.floor(Math.random() * jokes.length)]);
+  res.json(jokes[Math.floor(Math.random() * jokes.length)]);
 });
 
 app.get("*", (req, res) => {
