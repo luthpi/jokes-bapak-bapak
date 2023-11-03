@@ -1,5 +1,5 @@
 const auth = (req, res, next) => {
-  if (req.query.key == process.env.KEY) {
+  if (req.query.key && req.query.key == process.env.KEY) {
     next();
   } else {
     res.json({

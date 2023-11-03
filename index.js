@@ -1,5 +1,5 @@
 import express from "express";
-import auth from "./utils/middleware.js";
+import auth from "./middleware/auth.js";
 import { jokes } from "./api/jokes.js";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -9,6 +9,7 @@ const app = express();
 const port = 3000;
 
 app.set("json spaces", 2);
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({
@@ -28,7 +29,7 @@ app.get("/id/:id", auth, (req, res) => {
 });
 
 app.get("/random", auth, (req, res) => {
-  res.json(jokes[Math.floor(Math.random() * jokes.length)]);
+  vxres.json(jokes[Math.floor(Math.random() * jokes.length)]);
 });
 
 app.get("*", (req, res) => {
